@@ -4,6 +4,18 @@
  */
 
 import { Project, Article } from "./types";
+import heroImage from "../assets/photo-1551288049-bebda4e38f71.avif";
+import heroImage1 from "../assets/photo-1460925895917-afdab827c52f.avif";
+import heroImage2 from "../assets/photo-1504868584819-f8e8b4b6d7e3.avif";
+import heroImage3 from "../assets/photo-1517404215738-15263e9f9178.avif";
+import heroImage4 from "../assets/photo-1522071820081-009f0129c71c.avif";
+import heroImage5 from "../assets/photo-1531403009284-440f080d1e12.avif";
+import heroImage6 from "../assets/photo-1544716278-ca5e3f4abd8c.avif";
+import heroImage7 from "../assets/photo-1516979187457-637abb4f9353.avif";
+import heroImage8 from "../assets/photo-1506880018603-83d5b814b5a6.avif";
+import heroImage9 from "../assets/photo-1618005182384-a83a8bd57fbe.avif";
+import heroImage10 from "../assets/photo-1512941937669-90a1b58e7e9c.avif";
+import heroImage11 from "../assets/photo-1531297484001-80022131f5a1.avif";
 
 export const PERSONAL_INFO = {
   name: "Meteor",
@@ -54,7 +66,7 @@ export const PROJECTS: Project[] = [
     tag: "React / Web",
     tags: ["React 19", "Tailwind CSS", "TypeScript", "D3.js", "Recharts", "Node.js", "Vite"],
     techStack: ["React 19", "Tailwind CSS", "TypeScript", "D3.js", "Recharts", "Node.js", "Vite"],
-    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    heroImage: heroImage,
     client: "Digital Zen Inc.",
     role: "系统架构师 & UX 交互设计师",
     duration: "3 个月",
@@ -68,8 +80,8 @@ export const PROJECTS: Project[] = [
       "💡 完美兼容移动端响应式，手势拖拽缩放灵敏度提升 150%"
     ],
     screenshots: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=600&q=80"
+      heroImage1,
+      heroImage2,
     ]
   },
   {
@@ -79,7 +91,7 @@ export const PROJECTS: Project[] = [
     tag: "小程序",
     tags: ["微信小程序 SDK", "原生 JavaScript", "Tailwind CSS", "Map SDK", "CSS3 Animation"],
     techStack: ["微信小程序 SDK", "原生 JavaScript", "Tailwind CSS", "Map SDK", "CSS3 Animation"],
-    heroImage: "https://images.unsplash.com/photo-1517404215738-15263e9f9178?auto=format&fit=crop&w=1200&q=80",
+    heroImage: heroImage3,
     client: "新一线城市交通运输局",
     role: "小程序架构师 & 核心开发",
     duration: "5 个月",
@@ -92,8 +104,8 @@ export const PROJECTS: Project[] = [
       "📱 扫码开锁流失率降低 65%，累计服务超 200 万市民绿色出行"
     ],
     screenshots: [
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
+      heroImage4,
+      heroImage5,
     ]
   },
   {
@@ -103,7 +115,7 @@ export const PROJECTS: Project[] = [
     tag: "React / Web",
     tags: ["React 19", "Tailwind CSS", "SVG Canvas", "IntersectionObserver", "Vite"],
     techStack: ["React 19", "Tailwind CSS", "SVG Canvas", "IntersectionObserver", "Vite"],
-    heroImage: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80",
+    heroImage: heroImage6,
     client: "墨香阁国学沙龙",
     role: "设计师 & 开发",
     duration: "4 个月",
@@ -116,8 +128,8 @@ export const PROJECTS: Project[] = [
       "🚀 网站综合访问速度（LCP）平均提速 180%，社区日活跃帖攀升 120%"
     ],
     screenshots: [
-      "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=600&q=80"
+      heroImage7,
+      heroImage8,
     ]
   },
   {
@@ -127,7 +139,7 @@ export const PROJECTS: Project[] = [
     tag: "Design / UI",
     tags: ["React", "Tailwind CSS", "HTML5 Drag & Drop", "Motion Animation", "TypeScript"],
     techStack: ["React", "Tailwind CSS", "HTML5 Drag & Drop", "Motion Animation", "TypeScript"],
-    heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    heroImage: heroImage9,
     client: "云享网络科技",
     role: "后端架构师 & 核心开发",
     duration: "2.5 个月",
@@ -140,8 +152,8 @@ export const PROJECTS: Project[] = [
       "💯 Dribbble 设计趋势榜单前十，在 GitHub 获得 2.4k+ stars"
     ],
     screenshots: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=80"
+      heroImage10,
+      heroImage11,
     ]
   }
 ];
