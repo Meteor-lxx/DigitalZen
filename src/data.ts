@@ -7,10 +7,10 @@ import { Project, Article } from "./types";
 
 export const PERSONAL_INFO = {
   name: "Meteor",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+  avatar: "https://api.l-xx.cn/images/me.png",
   title: "Creative Developer & System Architect",
   subTitle: "以设计之禅，铸性能之美。专注于极简美学设计与极致前端性能调优。",
-  bio: "我是 Meteor，一名拥有 10 年研发经验的全栈开发工程师。在产品交互、动效设计以及性能调优（特别是微信小程序、React SPA 架构）领域有深厚积累。我相信「Digital Zen」—— 代码的极简、执行的流畅与视觉的纯净三位一体，方能交付让用户指尖愉悦的产品。",
+  bio: "我是 Meteor，一名拥有 10 年研发经验的全栈开发工程师。在产品交互、微服务、性能调优（特别是微信小程序、APP）领域有深厚积累。我相信「Digital Zen」—— 代码的极简、执行的流畅与视觉的纯净三位一体，方能交付让用户指尖愉悦的产品。",
   location: "中国 · 贵州 / 贵阳",
   email: "liuxin.yx@qq.com",
   phone: "+86 188-8888-8888",
@@ -21,8 +21,8 @@ export const PERSONAL_INFO = {
     { name: "TypeScript / Node.js", level: 90, category: "Core Tech" },
     { name: "Golang", level: 98, category: "Develop" },
     { name: "Php", level: 98, category: "Develop" },
-    { name: "Echarts / D3.js / WebGL", level: 85, category: "Data Viz" },
-    { name: "Performance Optimization (性能调优)", level: 98, category: "Core Tech" }
+    { name: "Echarts / WebGL", level: 85, category: "Develop" },
+    { name: "Doker / K8s", level: 98, category: "Develop" }
   ],
   experience: [
     {

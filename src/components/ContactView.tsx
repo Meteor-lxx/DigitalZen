@@ -133,7 +133,7 @@ export default function ContactView() {
           联系我 - Digital Zen Portfolio
         </h1>
         <p className="text-base text-gray-500 leading-relaxed">
-          有关于性能攻坚、架构搭建或者出海业务的前端需求？亦或是纯技术层面的畅聊，欢迎在此投递您的信件或直接联系我。
+          有关于性能攻坚、架构搭建或者出海业务的需求？亦或是纯技术层面的畅聊，欢迎在此投递您的信件或直接联系我。
         </p>
       </div>
 
