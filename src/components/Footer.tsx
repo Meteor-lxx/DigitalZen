@@ -29,7 +29,7 @@ export default function Footer({ onTabChange }: FooterProps) {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://github.com/aria-dev-zen" 
+                href="https://github.com/Meteor-lxx/DigitalZen" 
                 target="_blank" 
                 rel="noreferrer"
                 className="text-gray-400 hover:text-gray-900 transition-colors"
@@ -84,8 +84,8 @@ export default function Footer({ onTabChange }: FooterProps) {
                   <span>技术栈领域</span>
                 </h3>
                 <ul className="mt-4 space-y-2 text-sm text-gray-500">
-                  <li>React 19 & Concurrent Mode</li>
-                  <li>WeChat SDK & 微信小程序</li>
+                  <li>React / Vue</li>
+                  <li>微信小程序 / Android / iOS</li>
                   <li>Tailwind CSS & Web UI Design</li>
                   <li>性能分析 & 首屏加载调优</li>
                 </ul>
@@ -108,10 +108,10 @@ export default function Footer({ onTabChange }: FooterProps) {
 
         <div className="mt-12 border-t border-gray-200 pt-8 flex flex-col md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-gray-400">
-            &copy; {currentYear} Digital Zen Portfolio. Developed with precision by Aria.
+            &copy; {currentYear} Digital Zen Portfolio. Developed with precision by Meteor.
           </p>
           <p className="mt-2 text-xs text-gray-400 md:mt-0 flex items-center space-x-2">
-            <span>杭州 · 深圳 | 极速冷启动 LCP &lt; 0.8s</span>
+            <span> 极速冷启动 LCP &lt; 0.8s</span>
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
           </p>
         </div>

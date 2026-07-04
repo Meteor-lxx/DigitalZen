@@ -34,7 +34,7 @@ export default function Header({ currentTab, onTabChange }: HeaderProps) {
           </div>
           <div>
             <span className="font-sans font-bold tracking-tight text-gray-950 transition-colors group-hover:text-blue-600">Digital Zen</span>
-            <span className="ml-1.5 hidden rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-medium text-gray-600 sm:inline-block">Aria Portfolio</span>
+            <span className="ml-1.5 hidden rounded bg-gray-100 px-1.5 py-0.5 text-[10px] font-medium text-gray-600 sm:inline-block">Meteor Portfolio</span>
           </div>
         </div>
 

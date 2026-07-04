@@ -32,16 +32,16 @@ export const PERSONAL_INFO = {
       desc: "主导多款大型企业级分析系统与出海 SaaS 平台的前端重构，通过冷启动调优、虚拟列表、API预提取等极致技术手段使多端首屏加载时间降低达 70% 以上。"
     },
     {
-      period: "2022 - 2024",
-      company: "某头部互联网大厂",
-      role: "高级小程序研发工程师",
-      desc: "负责日活百万级出行小程序的性能攻坚工作。主导了「首屏 3s 到 0.8s 专项优化项目」，深入优化 setData 频次、包体积拆分与二级缓存，被集团评为年度优秀技术案例。"
+      period: "2023 - 2026",
+      company: "贵州云佩科技有限公司",
+      role: "研发工程师 & 项目负责人",
+      desc: "负责云佩科技旗下云配小站、云配商家、云配司机等项目的研发工作，主导了云佩科技旗下云配小站、云配商家、云配司机等项目的研发工作，通过监控告警、故障演练、性能优化等手段，确保系统稳定运行。"
     },
     {
-      period: "2020 - 2022",
-      company: "新锐数字美学科技",
-      role: "前端研发工程师 & UI 交互设计师",
-      desc: "专注于国风美学、3D 数据可视化和毛玻璃质感（Glassmorphism）高精动效交互的探索与研发，设计并实现了多款在社区获得数千 Stars 的高分开源项目。"
+      period: "2019 - 2023",
+      company: "上海达龙信息科技有限公司",
+      role: "云平台架构师",
+      desc: "负责日活百万级多终端系统的性能攻坚工作。主导系统稳定性与高可用性建设，通过监控告警、故障演练、性能优化等手段，确保系统稳定运行。"
     }
   ]
 };
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React 19", "Tailwind CSS", "TypeScript", "D3.js", "Recharts", "Node.js", "Vite"],
     heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     client: "Digital Zen Inc.",
-    role: "前端主架构师 & UX 交互设计师",
+    role: "系统架构师 & UX 交互设计师",
     duration: "3 个月",
     overview: "Digital Zen 数据分析系统是为敏捷出海团队与数字化零售企业打造的下一代分析平台。它通过自研的数据捕获 SDK 与极简的可视化画布，让业务团队在不依赖研发的情况下完成埋点、热力图绘制、群组分析等复杂操作。该系统致力于通过极致的加载表现与严苛的交互细节，呈现“数据如水，静水深流”的设计禅意。",
     challenge: "原版监控面板存在大规模图表渲染阻塞（10k+ DOM nodes）、高频 WebSocket 数据推挤带来的界面卡顿、以及在弱网环境下的首屏启动缓慢等重大技术痛点，导致平均跳出率高达 18.4%。",
@@ -81,7 +81,7 @@ export const PROJECTS: Project[] = [
     techStack: ["微信小程序 SDK", "原生 JavaScript", "Tailwind CSS", "Map SDK", "CSS3 Animation"],
     heroImage: "https://images.unsplash.com/photo-1517404215738-15263e9f9178?auto=format&fit=crop&w=1200&q=80",
     client: "新一线城市交通运输局",
-    role: "小程序前端核心负责人",
+    role: "小程序架构师 & 核心开发",
     duration: "5 个月",
     overview: "智行 Mini 是为新一线城市定制的智慧交通出行方案。集合了公交、地铁、共享单车和网约车实时调度功能。为满足在公交站牌、地铁闸机等临时扫码场景下的极速响应需求，小程序从零开始进行了极致的代码压缩、首屏优化与高德地图二次渲染定制。",
     challenge: "在扫码开锁或快速查车等场景下，用户对小程序加载时长极其敏感。旧版本由于历史债务严重，包体积达 8.4MB，弱网下启动长达 3.2s，伴有明显的组件闪烁与二次定位卡顿，严重阻碍用户出行体验。",
@@ -105,7 +105,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React 19", "Tailwind CSS", "SVG Canvas", "IntersectionObserver", "Vite"],
     heroImage: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80",
     client: "墨香阁国学沙龙",
-    role: "独立设计师 & 前端开发",
+    role: "设计师 & 开发",
     duration: "4 个月",
     overview: "墨香阁是一个垂直于传统书画与艺术设计的交流平台。该项目在前端层面融合了大量高精度的字帖 SVG 放大镜渲染技术与流畅的网格瀑流展示，旨在为艺术家与传统文化爱好者提供一个像素级清晰、纯净且无干扰的国学空间。",
     challenge: "高清字帖扫描件（单张 30MB+）的动态加载与任意手势下的缩放模糊问题，以及跨平台多终端设备下墨竹国画风视觉效果的统一呈现。",
@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
     techStack: ["React", "Tailwind CSS", "HTML5 Drag & Drop", "Motion Animation", "TypeScript"],
     heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     client: "云享网络科技",
-    role: "体验设计师 (UX/UI) & 前端核心",
+    role: "后端架构师 & 核心开发",
     duration: "2.5 个月",
     overview: "云享云盘是一款注重数据可视化管理与灵动卡片交互的云端私有存储管理工具。在设计上，大量使用了类似 Apple 的毛玻璃材质、流畅的弹性动画与基于拖拽手势的文件批量归档交互，让枯燥的文件管理成为一种愉悦的指尖微操体验。",
     challenge: "在大批量的文件上传与复杂的拖动层级（多级文件夹穿透拖入）交互下，极易产生 DOM 渲染震荡（Reflow/Repaint）以及操作丢失的问题。",

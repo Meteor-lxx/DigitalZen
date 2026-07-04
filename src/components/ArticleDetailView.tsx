@@ -390,12 +390,12 @@ export default function ArticleDetailView({ article, onBack }: ArticleDetailView
                 <div className="relative z-10 space-y-3">
                   <div className="flex items-center space-x-3">
                     <img
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
-                      alt="Aria"
+                      src="https://api.l-xx.cn/images/me.png"
+                      alt="Meteor"
                       className="h-10 w-10 rounded-full border-2 border-white object-cover"
                     />
                     <div>
-                      <h4 className="font-bold text-sm text-white">Aria</h4>
+                      <h4 className="font-bold text-sm text-white">Meteor</h4>
                       <p className="text-[10px] text-blue-400 font-mono">Performance Architect</p>
                     </div>
                   </div>
