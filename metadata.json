@@ -1,0 +1,6 @@
+{
+  "name": "Digital Zen - 开发者作品集",
+  "description": "A beautiful, minimalist portfolio for Aria, focusing on Web UI craftsmanship and WeChat Mini-program performance optimizations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
