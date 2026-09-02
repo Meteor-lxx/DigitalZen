@@ -108,7 +108,7 @@ export default function Footer({ onTabChange }: FooterProps) {
 
         <div className="mt-12 border-t border-gray-200 pt-8 flex flex-col md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-gray-400">
-            &copy; {currentYear} Digital Zen Portfolio. Developed with precision by Meteor.
+            &copy; {currentYear} Digital Zen Portfolio. Developed with precision by Meteor. <a href="https://beian.miit.gov.cn/" target="_blank">黔ICP备2023014452号-1</a>
           </p>
           <p className="mt-2 text-xs text-gray-400 md:mt-0 flex items-center space-x-2">
             <span> 极速冷启动 LCP &lt; 0.8s</span>
