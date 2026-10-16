@@ -493,13 +493,11 @@ func (c *QdrantClient) Search(ctx context.Context, collection string, vector []f
         bytes.NewReader(data))
     req.Header.Set("Content-Type", "application/json")
     req.Header.Set("api-key", c.APIKey)
-
     resp, err := c.HTTP.Do(req)
     if err != nil {
         return nil, err
     }
     defer resp.Body.Close()
-
     var result []SearchResult
     if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
         return nil, err
