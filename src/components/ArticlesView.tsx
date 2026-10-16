@@ -17,7 +17,7 @@ export default function ArticlesView({ onArticleClick }: ArticlesViewProps) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("All");
 
-  const categories = ["All", "性能调优", "Frontend","Backend", "Thoughts","AI",];
+  const categories = ["All", "后端", "前端","数据库", "AI",];
 
   const filteredArticles = ARTICLES.filter((article) => {
     const matchesSearch =
