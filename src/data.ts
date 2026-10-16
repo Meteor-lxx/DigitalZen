@@ -160,6 +160,300 @@ export const PROJECTS: Project[] = [
 
 export const ARTICLES: Article[] = [
   {
+    id: "go-payment-center-gozero-refactor",
+    title: "Go 微服务实战：从 Swoft 到 Go-Zero 的高并发支付中心重构",
+    subtitle: "支付路由、幂等、对账与渠道动态切换的工程化落地",
+    category: "Backend",
+    date: "2020-04-16",
+    readTime: "12 分钟",
+    views: 3821,
+    summary: "支付中心承载公司所有应用的支付、退款、提现、预扣款，早期基于 Swoft/Swoole，随着业务增长出现内存泄漏、worker 重启绑定丢失等问题。本文记录如何使用 Go + Go-Zero + gRPC + RabbitMQ + Redis 重构支付路由、幂等、对账和渠道动态切换能力。",
+    contentMarkdown: `## 🏷️ 背景
+
+支付中心是公司所有应用的资金入口，需要支持微信、支付宝、Stripe、Paypal、Google 等多渠道支付，以及支付、退款、提现、预扣款等操作。旧系统基于 Swoft，开发效率高，但在长时间运行、高并发和长连接场景下，内存泄漏和 worker 重启后的绑定关系丢失成为痛点。
+
+## 🛠️ 架构设计
+
+重构后的支付中心分为三层：
+
+1. **API 网关层**：Kong + Lua，负责鉴权、限流、路由。
+2. **支付服务层**：Go-Zero 微服务，负责支付单、渠道路由、回调处理。
+3. **异步任务层**：RabbitMQ + Redis 延迟队列，处理超时关单、对账、重试。
+
+核心表设计遵循“最少可用原则”，支付单、渠道流水、退款单分离，避免字段冗余。
+
+## ⚡ 关键实现：渠道动态切换
+
+\`\`\`go
+type PayChannel struct {
+    Name    string
+    Enabled bool
+    Weight  int
+}
+func SelectChannel(channels []PayChannel) (PayChannel, error) {
+    var total int
+    for _, ch := range channels {
+        if ch.Enabled {
+            total += ch.Weight
+        }
+    }
+    if total == 0 {
+        return PayChannel{}, errors.New("no available channel")
+    }
+    n := rand.Intn(total)
+    for _, ch := range channels {
+        if !ch.Enabled {
+            continue
+        }
+        if n < ch.Weight {
+            return ch, nil
+        }
+        n -= ch.Weight
+    }
+    return channels[0], nil
+}
+\`\`\`
+
+## 🔐 幂等与对账
+
+支付回调必须幂等。我们使用 **out_trade_no + channel** 作为唯一键，Redis 分布式锁 + MySQL 唯一索引双保险。对账任务每天凌晨跑批，对比渠道流水和本地流水，差异自动告警。
+
+## 🚀 性能优化
+
+- 使用 gRPC 替代部分 HTTP 内部调用，降低延迟。
+- MySQL 分表：按商户 ID 哈希分 16 表。
+- Redis 连接池 + 本地缓存，减少热点 Key 压力。
+- K8s HPA 根据 QPS 自动伸缩。
+
+## 📊 总结
+
+从 Swoft 到 Go-Zero，不只是语言切换，更是服务治理、内存控制和部署方式的升级。Go 在支付中心这种高并发、高稳定场景下，表现非常适合。`
+},
+  {
+    id: "go-websocket-cluster-architecture",
+    title: "Go 实现 WebSocket 集群：从 2K 到 1.6W 实时连接的架构演进",
+    subtitle: "goroutine、Redis 发布订阅、K8s 自动伸缩与冷热数据分离",
+    category: "Backend",
+    date: "2021-05-22",
+    readTime: "14 分钟",
+    views: 4173,
+    summary: "业务需要排队、到期通知、余额不足、好友在线、聊天、群聊等双向通信能力。第一版使用 Swoft2，遇到内存泄漏和 worker 重启绑定丢失问题；第二版用 Go 重构，配合 K8s、Redis 发布订阅和每日分表，支撑高峰 1.6W+ 实时连接。",
+    contentMarkdown: `## 🏷️ 背景
+
+长连接场景对内存、连接管理和消息可靠性要求很高。Swoft2 版本在长时间运行后出现内存上涨，worker 重启会导致连接绑定关系丢失，用户需要重新连接。
+
+## 🛠️ 架构设计
+
+第二版架构：
+
+- **接入层**：Go WebSocket 服务，使用 gorilla/websocket。
+- **路由层**：K8s Service + Ingress，4 个副本起步，根据连接数自动伸缩。
+- **消息层**：Redis 发布订阅 + RabbitMQ，跨节点广播。
+- **存储层**：MongoDB 存离线消息，MySQL 存关系数据，Redis 存在线状态。
+- **分表策略**：按天分表，3 个月前数据转冷存储。
+
+## ⚡ 关键实现：连接管理
+
+\`\`\`go
+type Client struct {
+    ID   string
+    Conn *websocket.Conn
+    Send chan []byte
+}
+type Hub struct {
+    clients    map[string]*Client
+    register   chan *Client
+    unregister chan *Client
+    broadcast  chan []byte
+}
+func (h *Hub) Run() {
+    for {
+        select {
+        case c := <-h.register:
+            h.clients[c.ID] = c
+        case c := <-h.unregister:
+            if _, ok := h.clients[c.ID]; ok {
+                delete(h.clients, c.ID)
+                close(c.Send)
+            }
+        case msg := <-h.broadcast:
+            for _, c := range h.clients {
+                select {
+                case c.Send <- msg:
+                default:
+                    close(c.Send)
+                    delete(h.clients, c.ID)
+                }
+            }
+        }
+    }
+}
+\`\`\`
+
+## 🌐 跨节点广播
+
+单机 Hub 只能广播本节点连接。我们用 Redis 发布订阅：
+
+\`\`\`go
+func (h *Hub) SubscribeRedis() {
+    pubsub := redisClient.Subscribe(ctx, "ws:broadcast")
+    ch := pubsub.Channel()
+    for msg := range ch {
+        h.broadcast <- []byte(msg.Payload)
+    }
+}
+\`\`\`
+
+## 🚀 优化点
+
+- 心跳检测：30 秒 ping/pong，超时断开。
+- 写超时：每个连接独立写协程，避免阻塞。
+- 内存控制：限制单连接发送缓冲区，超过阈值断开。
+- 冷热分离：3 个月前消息归档，减少 MySQL 压力。
+
+## 📊 总结
+
+Go 的 goroutine 和 channel 非常适合长连接场景。配合 K8s 自动伸缩和 Redis 发布订阅，可以较低成本支撑万级实时连接。`
+  },
+  {
+    id: "go-crawler-automation-overseas-traffic",
+    title: "Go 爬虫与自动化：海外私域引流系统的工程化设计",
+    subtitle: "并发调度、养号策略、反爬与 Python 数据清洗协作",
+    category: "Backend",
+    date: "2025-07-11",
+    readTime: "11 分钟",
+    views: 2784,
+    summary: "海外私域引流需要自动化注册、养号、爬数据、分析筛选、加好友、拉群、私聊、发广告。我们用 Go 做爬虫和自动化，Python 做数据清洗，Docker + 自建 VPN 解决环境隔离。",
+    contentMarkdown: `## 🏷️ 背景
+
+自然流量需要大量自动化操作，人工成本高且容易封号。系统需要模拟真实用户行为，同时处理验证码识别、OCR、地理定位筛选等。
+
+## 🛠️ 技术栈
+
+- **Go**：爬虫、自动化任务、并发调度。
+- **Python**：数据清洗、AI 对话。
+- **Docker**：每个账号独立容器环境。
+- **自建 VPN**：不同账号不同 IP。
+- **OCR**：头像识别性别、年龄。
+- **AI 机器人**：自动应答、筛选意向客户。
+
+## ⚡ 关键实现：并发任务调度
+
+\`\`\`go
+type Task struct {
+    AccountID string
+    Action    string
+    Payload   map[string]string
+}
+func WorkerPool(tasks <-chan Task, workers int) {
+    var wg sync.WaitGroup
+    for i := 0; i < workers; i++ {
+        wg.Add(1)
+        go func() {
+            defer wg.Done()
+            for task := range tasks {
+                if err := execute(task); err != nil {
+                    log.Printf("task failed: %v", err)
+                }
+            }
+        }()
+    }
+    wg.Wait()
+}
+\`\`\`
+
+## 🛡️ 反爬与养号策略
+
+- 随机 User-Agent、浏览器指纹。
+- 操作间隔随机化，模拟人工。
+- 每日任务量限制，避免异常。
+- 账号分组，A/B 测试养号策略。
+
+## 🧹 数据清洗
+
+Go 爬取原始数据后，写入 Kafka，Python 消费并清洗，再写回 MySQL。清洗规则包括：去重、格式化、地理位置解析、意图标签。
+
+## 📊 总结
+
+Go 的高并发和低内存占用非常适合爬虫与自动化。关键不是“爬得快”，而是“像真人”。工程化设计要围绕稳定性、可观测性和可恢复性。`
+  },
+  {
+    id: "go-rag-qdrant-ai-customer-service",
+    title: "Go + RAG + Qdrant：AI 智能客服的检索增强生成实践",
+    subtitle: "文档切片、向量检索、Prompt 工程与意向客户筛选",
+    category: "AI",
+    date: "2026-02-21",
+    readTime: "13 分钟",
+    views: 3326,
+    summary: "传统客服机器人基于关键词匹配，回答生硬。我们使用 RAG + Qdrant 向量数据库 + 文档切片 + Prompt 工程，在 Go 后端搭建 AI 智能客服，实现用户咨询自动应答和意向客户筛选。",
+    contentMarkdown: `## 🏷️ 背景
+
+海外私域引流中，用户咨询量大，人工回复慢。大模型直接回答容易幻觉，需要基于知识库检索增强。
+
+## 🔁 RAG 流程
+
+1. **文档切片**：将产品文档、FAQ、话术切分成 300-500 字片段。
+2. **向量化**：调用 Embedding 模型生成向量。
+3. **存储**：写入 Qdrant 向量数据库。
+4. **检索**：用户问题向量化，Top-K 相似片段。
+5. **生成**：将片段 + 问题 + Prompt 发给大模型。
+6. **后处理**：过滤敏感词，格式化输出。
+
+## ⚡ Go 调用 Qdrant 示例
+
+\`\`\`go
+type QdrantClient struct {
+    BaseURL string
+    APIKey  string
+    HTTP    *http.Client
+}
+func (c *QdrantClient) Search(ctx context.Context, collection string, vector []float32, limit int) ([]SearchResult, error) {
+    body := map[string]interface{}{
+        "vector": vector,
+        "limit":  limit,
+        "with_payload": true,
+    }
+    data, _ := json.Marshal(body)
+    req, _ := http.NewRequestWithContext(ctx, "POST",
+        fmt.Sprintf("%s/collections/%s/points/search", c.BaseURL, collection),
+        bytes.NewReader(data))
+    req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("api-key", c.APIKey)
+
+    resp, err := c.HTTP.Do(req)
+    if err != nil {
+        return nil, err
+    }
+    defer resp.Body.Close()
+
+    var result []SearchResult
+    if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+        return nil, err
+    }
+    return result, nil
+}
+\`\`\`
+
+## 🧠 Prompt 设计
+
+\`\`\`text
+你是一个海外私域客服助手。请根据以下知识库片段回答用户问题。
+如果知识库没有相关信息，请回答“我需要进一步确认”。
+知识库：
+{{context}}
+用户问题：
+{{question}}
+\`\`\`
+
+## 🎯 意向客户筛选
+
+AI 对话过程中，提取用户意图标签：价格、功能、试用、合作。高意向用户自动推送给销售，低意向用户继续机器人跟进。
+
+## 📊 总结
+
+Go 适合做 RAG 的后端编排：并发调用向量检索、大模型 API、业务数据库。Qdrant 轻量、性能好，适合中小规模知识库。关键是切片策略和 Prompt 质量，而不是盲目堆模型。`
+  },
+  {
     id: "wechat-performance-opt",
     title: "微信小程序性能优化：从 3s 到 0.8s 的优化之旅",
     subtitle: "分包架构、setData调优、首屏异步编排与骨架屏的深度落地实践",
