@@ -16,7 +16,8 @@ interface PortfolioViewProps {
 export default function PortfolioView({ onProjectClick }: PortfolioViewProps) {
   const [selectedTag, setSelectedTag] = React.useState<string>("All");
 
-  const tags = ["All", "React / Web", "小程序", "Design / UI"];
+  // const tags = ["All", "React / Web", "小程序", "Design / UI"];
+  const tags = ["All"];
 
   const filteredProjects = selectedTag === "All"
     ? PROJECTS

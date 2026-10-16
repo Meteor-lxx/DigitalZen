@@ -16,6 +16,13 @@ import heroImage8 from "../assets/photo-1506880018603-83d5b814b5a6.avif";
 import heroImage9 from "../assets/photo-1618005182384-a83a8bd57fbe.avif";
 import heroImage10 from "../assets/photo-1512941937669-90a1b58e7e9c.avif";
 import heroImage11 from "../assets/photo-1531297484001-80022131f5a1.avif";
+import heroImage12 from "../assets/photo-1506880018603-83d5b814b5a6.avif";
+import heroImage13 from "../assets/photo-1618005182384-a83a8bd57fbe.avif";
+import heroImage14 from "../assets/photo-1512941937669-90a1b58e7e9c.avif";
+import heroImage15 from "../assets/photo-1531297484001-80022131f5a1.avif";
+import heroImage16 from "../assets/photo-1618005182384-a83a8bd57fbe.avif";
+import heroImage17 from "../assets/photo-1512941937669-90a1b58e7e9c.avif";
+import heroImage18 from "../assets/photo-1531297484001-80022131f5a1.avif";
 
 export const PERSONAL_INFO = {
   name: "Meteor",
@@ -60,101 +67,168 @@ export const PERSONAL_INFO = {
 
 export const PROJECTS: Project[] = [
   {
-    id: "digital-zen-analytics",
-    title: "Digital Zen 数据分析系统",
-    subtitle: "面向中小企业的全链路、零代码数据可视化与行为流分析平台",
-    tag: "React / Web",
-    tags: ["React 19", "Tailwind CSS", "TypeScript", "D3.js", "Recharts", "Node.js", "Vite"],
-    techStack: ["React 19", "Tailwind CSS", "TypeScript", "D3.js", "Recharts", "Node.js", "Vite"],
-    heroImage: heroImage,
-    client: "Digital Zen Inc.",
-    role: "系统架构师 & UX 交互设计师",
-    duration: "3 个月",
-    overview: "Digital Zen 数据分析系统是为敏捷出海团队与数字化零售企业打造的下一代分析平台。它通过自研的数据捕获 SDK 与极简的可视化画布，让业务团队在不依赖研发的情况下完成埋点、热力图绘制、群组分析等复杂操作。该系统致力于通过极致的加载表现与严苛的交互细节，呈现“数据如水，静水深流”的设计禅意。",
-    challenge: "原版监控面板存在大规模图表渲染阻塞（10k+ DOM nodes）、高频 WebSocket 数据推挤带来的界面卡顿、以及在弱网环境下的首屏启动缓慢等重大技术痛点，导致平均跳出率高达 18.4%。",
-    solution: "1. 引入 React 19 Concurrent Mode 配合虚拟列表（Windowing），将超大图表容器的内存常驻减少 75%。\n2. 使用 D3 纯 Canvas 底层构建高性能多维度趋势图与轨迹分析模块。\n3. 部署自适应离线缓存与 API 乐观更新策略，支持无感离线查阅与表单保存。",
+    id: "dalong-microservices",
+    title: "达龙微服务架构改造",
+    subtitle: "承载 4 亿用户注册、300 万日活的高并发微服务重构",
+    tag: "Go / 微服务",
+    tags: ["Swoft", "Swoole", "gRPC", "RPC", "K8s", "Docker", "MySQL", "Redis", "RabbitMQ", "Apollo"],
+    techStack: ["Swoft", "Swoole", "gRPC", "RPC", "K8s", "Docker", "MySQL", "Redis", "RabbitMQ", "Apollo"],
+    heroImage: heroImage1,
+    client: "上海达龙信息科技有限公司",
+    role: "架构师 & 核心开发",
+    duration: "2019.05 - 2020.04",
+    overview:
+      "项目改造是为了承接旧系统的流量以及数据存储问题。旧系统用户注册数 3 千万，日活 80 万，数据库到达瓶颈。通过数据库重新设计带动业务重构，选择微服务架构，目标承载 4 亿用户注册，300 万日活。项目分为用户中心、消费订单中心、充值订单中心、公共配置中心、用户行为中心、资源调度中心以及监控报警中心。",
+    challenge:
+      "旧系统数据库瓶颈，高并发下服务稳定性差，业务迭代困难。需要在不影响现有用户的情况下完成架构迁移，并支撑未来数亿级用户规模。",
+    solution: `1. 采用 Swoole 扩展框架 Swoft 构建微服务，API 网关 + 各服务 RPC，服务内部通讯采用 TCP 连接池（RPC、MySQL、Redis、MQ 连接池）。
+2. 网关层采用熔断、降级、限流消峰等技术。
+3. 核心公共组件使用私有 Composer 管理，Git 进行框架迭代，Apollo 配置管理，Docker-compose 编排本地开发。
+4. 部署使用 K8s + Docker 自动化部署。`,
     results: [
-      "📊 首屏加载时间从 4.2s 缩短至 0.9s (Speedup 78%)",
-      "🔥 单页面高密度渲染 10,000+ 点数据无卡顿，流畅度维持在 58+ FPS",
-      "📈 线上用户跳出率从 18.4% 降至 2.1%，获得客户一致赞誉",
-      "💡 完美兼容移动端响应式，手势拖拽缩放灵敏度提升 150%"
+      "🚀 架构改造后可承载 4 亿用户注册、300 万日活",
+      "📈 旧系统数据库瓶颈得到解决，业务迭代效率大幅提升",
+      "🔧 微服务拆分出用户、订单、充值、配置、行为、调度、监控等中心",
+      "☁️ 实现 K8s + Docker 自动化部署与弹性伸缩"
     ],
-    screenshots: [
-      heroImage1,
-      heroImage2,
-    ]
+    screenshots: [heroImage2, heroImage3]
   },
   {
-    id: "zhixing-mini",
-    title: "智行 Mini 交通出行小程序",
-    subtitle: "百万级日活的一站式智慧城市交通调度与实时路线规划小程序",
-    tag: "小程序",
-    tags: ["微信小程序 SDK", "原生 JavaScript", "Tailwind CSS", "Map SDK", "CSS3 Animation"],
-    techStack: ["微信小程序 SDK", "原生 JavaScript", "Tailwind CSS", "Map SDK", "CSS3 Animation"],
-    heroImage: heroImage3,
-    client: "新一线城市交通运输局",
-    role: "小程序架构师 & 核心开发",
-    duration: "5 个月",
-    overview: "智行 Mini 是为新一线城市定制的智慧交通出行方案。集合了公交、地铁、共享单车和网约车实时调度功能。为满足在公交站牌、地铁闸机等临时扫码场景下的极速响应需求，小程序从零开始进行了极致的代码压缩、首屏优化与高德地图二次渲染定制。",
-    challenge: "在扫码开锁或快速查车等场景下，用户对小程序加载时长极其敏感。旧版本由于历史债务严重，包体积达 8.4MB，弱网下启动长达 3.2s，伴有明显的组件闪烁与二次定位卡顿，严重阻碍用户出行体验。",
-    solution: "1. 重构小程序目录，实施精细化主包与分包加载方案（Subpackaging），将主包包体积极限缩减至 840KB。\n2. 移除所有冗余 JS-driven 动画，全面改用基于 CSS Transitions 并在 GPU 触发下的高性能流畅动效。\n3. 独立封装 Canvas 二维码生成和地图标记聚合，对 setData 进行多级合并降频。",
+    id: "dsom-middle-platform",
+    title: "DSOM 中台服务",
+    subtitle: "支付、鉴权、通讯、监控、配置下发一体化中台",
+    tag: "Go / 中台",
+    tags: ["Swoft", "Go", "gRPC", "K8s", "Docker", "Kong+Lua", "Jenkins", "MySQL集群", "Redis集群", "RabbitMQ集群", "MongoDB", "Vue"],
+    techStack: ["Swoft", "Go", "gRPC", "K8s", "Docker", "Kong+Lua", "Jenkins", "MySQL集群", "Redis集群", "RabbitMQ集群", "MongoDB", "Vue"],
+    heroImage: heroImage4,
+    client: "上海达龙信息科技有限公司",
+    role: "开发、架构、运维",
+    duration: "2020.04 - 2022.12",
+    overview:
+      "中台服务由我开发的有：支付中心、中台统一管理 openhome、中台统一鉴权 auc、通讯服务（Golang）、服务质量监控（Golang）、配置下发中心（Golang）、中台统一管理后台。项目基于 K8s 搭建，旨在为各业务提供稳定、高并发的共享服务。",
+    challenge:
+      "各业务线重复建设支付、鉴权、通讯等能力，资源浪费且稳定性参差不齐。需要抽象出共性能力，支撑业务快速迭代，同时保证高并发、高稳定。",
+    solution: `1. 基于 K8s 搭建中台服务，使用 Swoft 连接池、熔断、降级、TCP 客户端、HTTP 服务端、RPC、gRPC、AOP、反射、协程、分布式事务、服务注册发现。
+2. 使用 Kong+Lua、Jenkins、Docker、Docker-compose 进行网关与 CI/CD。
+3. Go 实现 TCP/HTTP/WebSocket/gRPC 服务端。
+4. Vue 开发后台管理界面。
+5. MySQL 集群、Redis 集群、RabbitMQ 集群、MongoDB。`,
     results: [
-      "⚡ 核心冷启动时长从原先的 3.2s 缩减至 0.8s，实现了「扫码即开」的极致体验",
-      "📦 小程序评测工具跑分从 72 分跃升至 98 分，荣登同类出行小程序前 1%",
-      "📱 扫码开锁流失率降低 65%，累计服务超 200 万市民绿色出行"
+      "📡 质量监控服务支撑 1.5 万台机器同时建立 TCP 连接并实时写入日志",
+      "💳 支付中心承载公司所有应用的支付、退款、提现、预扣款等操作",
+      "🔐 中台 openhome 统一管理所有服务接入规则与商户权限",
+      "🔌 WebSocket 集群低峰 2K+、高峰 1.6W+ 实时连接"
     ],
-    screenshots: [
-      heroImage4,
-      heroImage5,
-    ]
+    screenshots: [heroImage5, heroImage6]
   },
   {
-    id: "moxiangge-community",
-    title: "墨香阁 2.0 东方美学社区",
-    subtitle: "基于 React 19 & SSR 架构的国风书法交流与高清字帖赏析社区",
-    tag: "React / Web",
-    tags: ["React 19", "Tailwind CSS", "SVG Canvas", "IntersectionObserver", "Vite"],
-    techStack: ["React 19", "Tailwind CSS", "SVG Canvas", "IntersectionObserver", "Vite"],
-    heroImage: heroImage6,
-    client: "墨香阁国学沙龙",
-    role: "设计师 & 开发",
-    duration: "4 个月",
-    overview: "墨香阁是一个垂直于传统书画与艺术设计的交流平台。该项目在前端层面融合了大量高精度的字帖 SVG 放大镜渲染技术与流畅的网格瀑流展示，旨在为艺术家与传统文化爱好者提供一个像素级清晰、纯净且无干扰的国学空间。",
-    challenge: "高清字帖扫描件（单张 30MB+）的动态加载与任意手势下的缩放模糊问题，以及跨平台多终端设备下墨竹国画风视觉效果的统一呈现。",
-    solution: "1. 基于 SVG 瓦片地图加载思路，实现高分辨率拓本的多级异步裁切加载（Tile Loading）。\n2. 结合 CSS Mix Blend Mode 和自定义 Canvas 偏色滤镜，完美实现“纸黄变古、墨黑晕染”的东方古韵视觉效果。\n3. 构建无缝无限滚动瀑布流，利用 IntersectionObserver 实施严格的离屏 DOM 回收。",
+    id: "payment-center",
+    title: "支付中心",
+    subtitle: "面向多商户、多渠道的动态支付路由与资金安全系统",
+    tag: "Go / 支付",
+    tags: ["Swoft", "Swoole", "RSA", "连接池", "熔断", "降级", "AOP", "RPC", "延迟队列", "微信支付", "支付宝", "Stripe", "Paypal", "Google支付"],
+    techStack: ["Swoft", "Swoole", "RSA", "连接池", "熔断", "降级", "AOP", "RPC", "延迟队列", "微信支付", "支付宝", "Stripe", "Paypal", "Google支付"],
+    heroImage: heroImage7,
+    client: "上海达龙信息科技有限公司",
+    role: "开发、架构、运维",
+    duration: "2019.08 - 2022.12",
+    overview:
+      "由于旧系统支付会出现商家参数错误或系统问题造成玩家不能充值，故做了一个支付中心能够动态切换支付应用。接入微信和支付宝 H5 支付、APP 支付、扫码支付、预扣款支付、Stripe 支付、Paypal 支付、Google 支付。支付中心面向商户，目前提供内部掌上网咖、达龙云电脑、达龙社区、茄子云、游戏发行、开发者平台、JoyArk、netboom 等应用支付。",
+    challenge:
+      "多渠道支付参数复杂，商户配置错误导致充值失败；需要统一支付入口，支持动态切换渠道，保证资金安全与高可用。",
+    solution: `1. 使用 Swoft 框架开发，采用 RSA 加解密、连接池、熔断、降级、AOP、RPC、延迟队列等技术。
+2. 设计支付路由层，支持按商户、渠道、权重动态选择支付应用。
+3. 统一封装微信、支付宝、Stripe、Paypal、Google 等支付渠道。
+4. 实现支付、退款、提现、预扣款等完整资金操作。`,
     results: [
-      "🎨 4K级高清碑帖实现秒级加载，任意手势缩放维持纤毫毕现的清晰度",
-      "🍵 东方古典极简交互斩获年度 UI 设计创新大奖",
-      "🚀 网站综合访问速度（LCP）平均提速 180%，社区日活跃帖攀升 120%"
+      "💳 统一承载公司所有应用的支付、退款、提现、预扣款",
+      "🔀 支持支付应用动态切换，降低商户配置错误导致的充值失败",
+      "🌍 接入微信、支付宝、Stripe、Paypal、Google 等全球主流支付渠道",
+      "🛡️ 通过 RSA 加解密、熔断降级、延迟队列保障资金安全与最终一致性"
     ],
-    screenshots: [
-      heroImage7,
-      heroImage8,
-    ]
+    screenshots: [heroImage8, heroImage9]
   },
   {
-    id: "yunxiang-explorer",
-    title: "云享极简云端文件管理器",
-    subtitle: "灵动、安全的沉浸式多端云盘管理器交互界面设计与前端重构",
-    tag: "Design / UI",
-    tags: ["React", "Tailwind CSS", "HTML5 Drag & Drop", "Motion Animation", "TypeScript"],
-    techStack: ["React", "Tailwind CSS", "HTML5 Drag & Drop", "Motion Animation", "TypeScript"],
-    heroImage: heroImage9,
-    client: "云享网络科技",
-    role: "后端架构师 & 核心开发",
-    duration: "2.5 个月",
-    overview: "云享云盘是一款注重数据可视化管理与灵动卡片交互的云端私有存储管理工具。在设计上，大量使用了类似 Apple 的毛玻璃材质、流畅的弹性动画与基于拖拽手势的文件批量归档交互，让枯燥的文件管理成为一种愉悦的指尖微操体验。",
-    challenge: "在大批量的文件上传与复杂的拖动层级（多级文件夹穿透拖入）交互下，极易产生 DOM 渲染震荡（Reflow/Repaint）以及操作丢失的问题。",
-    solution: "1. 设计高精度的 Drag-and-Drop 物理阻尼与路径吸附动效。\n2. 结合 React Ref 与状态缓存切片，绕过高频 state 更新，直接进行物理帧运算后一并提交。\n3. 精巧设计带有层级深度反馈的动态卡片视觉。",
+    id: "wss-communication-service",
+    title: "WSS 通讯服务",
+    subtitle: "从 Swoft 到 Go 重构的万级长连接双向通信集群",
+    tag: "Go / WebSocket",
+    tags: ["Swoft2", "Go", "WebSocket", "K8s", "MongoDB", "MySQL", "Redis", "发布订阅", "AOP", "RPC", "TCP", "协程", "延迟队列"],
+    techStack: ["Swoft2", "Go", "WebSocket", "K8s", "MongoDB", "MySQL", "Redis", "发布订阅", "AOP", "RPC", "TCP", "协程", "延迟队列"],
+    heroImage: heroImage10,
+    client: "上海达龙信息科技有限公司",
+    role: "开发、架构、运维",
+    duration: "2019.05 - 2022.12",
+    overview:
+      "在业务里面会使用到双向通信，比如排队、到期通知、余额不足通知、好友在线、好友聊天、群聊等双向通信的场景。开发中使用到连接池、熔断、降级、MongoDB、MySQL、Redis 发布订阅、AOP、RPC、TCP 客户端、协程、延迟队列等技术。一版本使用 Swoft2 版本开发，因框架组件存在内存泄漏原因设置 worker 重启也会导致框架绑定关系丢失等问题，后使用 Go 开发二版本，切换 Go 开发后内存得以控制。",
+    challenge:
+      "Swoft2 版本存在内存泄漏，worker 重启导致连接绑定关系丢失，用户需要重新连接；每日数据量庞大，需要高效存储与冷热分离。",
+    solution: `1. 使用 Go 重构通讯服务，控制内存，提升稳定性。
+2. 使用 K8s 部署服务，初始 4 个副本集，根据流量自动伸缩。
+3. 每日分表存储数据，3 个月之前的数据冷热分离。
+4. 使用 Redis 发布订阅实现跨节点消息广播。`,
     results: [
-      "✨ 文件拖入、分类、归档动效响应延迟控制在 16ms 以内，无任何肉眼卡顿",
-      "📁 完美支持单次 10,000+ 文件树的大规模无刷新极速加载与检索",
-      "💯 Dribbble 设计趋势榜单前十，在 GitHub 获得 2.4k+ stars"
+      "📡 每日低峰 2K+ 实时连接，高峰 1.6W+ 实时连接",
+      "🧠 Go 重构后内存得到有效控制，worker 重启不再丢失绑定关系",
+      "📦 K8s 自动伸缩 + 每日分表 + 冷热分离，支撑海量消息存储",
+      "💬 支撑排队、到期通知、余额不足、好友在线、聊天、群聊等双向通信"
     ],
-    screenshots: [
-      heroImage10,
-      heroImage11,
-    ]
+    screenshots: [heroImage11, heroImage12]
+  },
+  {
+    id: "automation-system",
+    title: "海外私域自动化引流系统",
+    subtitle: "注册、养号、爬虫、AI 客服与批量广告投放一体化",
+    tag: "Go / 自动化",
+    tags: ["Golang", "Python", "Docker", "自建VPN", "自动化爬虫", "AI机器人", "OCR", "数据清洗", "RAG", "Qdrant"],
+    techStack: ["Golang", "Python", "Docker", "自建VPN", "自动化爬虫", "AI机器人", "OCR", "数据清洗", "RAG", "Qdrant"],
+    heroImage: heroImage13,
+    client: "贵州云佩科技有限公司",
+    role: "研发、维护",
+    duration: "2024.01 - 2026.05",
+    overview:
+      "项目涉及到大量自动化功能，包含注册、登陆、验证码识别、数据爬取、分析筛选数据、用户日常养号策略、批量发送广告、封装大模型对话能力，实现用户咨询自动应答、快速筛选有意图的客户。数据分析用到头像 OCR 识别性别年龄；介绍或者定位筛选地理位置；使用 AI 机器人聊天引导流量。项目使用 Docker + 自建 VPN + Golang 自动化爬虫 + AI 机器人 + Python 数据清洗。",
+    challenge:
+      "海外平台反爬严格，账号容易封禁；需要模拟真实用户行为，同时处理验证码、OCR、地理定位、AI 对话等复杂任务。",
+    solution: `1. 使用 Docker 为每个账号提供独立环境，自建 VPN 分配不同 IP。
+2. Golang 编写高并发自动化爬虫与任务调度。
+3. Python 进行数据清洗、格式化、地理位置解析、意图标签。
+4. 封装大模型对话能力，结合 RAG、Qdrant 向量数据库实现 AI 智能客服。
+5. 随机化操作间隔、User-Agent、浏览器指纹，实施养号策略。`,
+    results: [
+      "🤖 开发了一套商业化自然引流软件，依靠软件服务赚取服务费",
+      "📈 实现注册、养号、爬数据、分析筛选、加好友、拉群私聊、发送广告全自动化",
+      "💬 AI 机器人自动应答，快速筛选高意向客户",
+      "🌍 支持 Facebook、TikTok、Ins 等多平台海外私域引流"
+    ],
+    screenshots: [heroImage14, heroImage15]
+  },
+  {
+    id: "wanqian-cloud-mall",
+    title: "万千云商 APP",
+    subtitle: "停车业务导流、多线下商家入驻的微服务电商平台",
+    tag: "Go / 电商",
+    tags: ["Kong", "Gin", "Gorm", "Protobuf", "gRPC", "Redis", "MySQL", "RabbitMQ", "Linux", "微服务"],
+    techStack: ["Kong", "Gin", "Gorm", "Protobuf", "gRPC", "Redis", "MySQL", "RabbitMQ", "Linux", "微服务"],
+    heroImage: heroImage16,
+    client: "贵州车秘科技有限公司",
+    role: "负责人",
+    duration: "2023.01 - 2023.03",
+    overview:
+      "万千云商是一款由停车业务导流、多个线下商家入驻的一款电商类 APP。项目研发是以微服务的方式开发的，分为 5 个服务：基础、用户、订单、商品、供应链。采用的技术：Kong + Gin + Gorm + Protobuf + gRPC + Redis + MySQL + RabbitMQ + Linux。",
+    challenge:
+      "需要快速搭建电商平台，支撑停车业务导流和多商家入驻，保证订单、商品、供应链数据一致性。",
+    solution: `1. 负责订单、商品服务功能开发，供应链与第三方接口实时交互（数据同步）。
+2. 接入支付宝、微信支付，手机充值业务接入。
+3. 设计数据库表，遵循最少可用原则避免字段冗余，创建合适索引，优化查询。
+4. 负责上线部署、运维。`,
+    results: [
+      "🛒 完成万千云商 APP 技术选型、开发、运维、交付",
+      "🔗 实现供应链与第三方接口实时数据同步",
+      "💳 接入支付宝、微信支付及手机充值业务",
+      "⚙️ 微服务架构拆分基础、用户、订单、商品、供应链 5 个服务"
+    ],
+    screenshots: [heroImage17, heroImage18]
   }
 ];
 
